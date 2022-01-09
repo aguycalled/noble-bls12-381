@@ -24,10 +24,7 @@ export const CURVE = {
   // where Fp2 is Fp[√−1]/(x2+1). #E2(Fp2 ) = h2q, where
   // G² - 1
   // h2q
-  P2:
-    0x1a0111ea397fe69a4b1ba7b6434bacd764774b84f38512bf6730d2a0f6b0f6241eabfffeb153ffffb9feffffffffaaabn **
-      2n -
-    1n,
+  P2: 0x2a437a4b8c35fc74bd278eaa22f25e9e2dc90e50e7046b466e59e49349e8bd050a62cfd16ddca6ef53149330978ef011d68619c86185c7b292e85a87091a04966bf91ed3e71b743162c338362113cfd7ced6b1d76382eab26aa00001c718e38,
   // cofactor
   h2: 0x5d543a95414e7f1091d50792876a202cd91de4547085abaa68a205b2e5a7ddfa628f1cb4d9e82ef21537e293a6691ae1616ec6e786f0c70cf1c38e31c7238e5n,
   G2x: [
@@ -107,8 +104,9 @@ function genInvertBatch<T extends Field<T>>(cls: FieldStatic<T>, nums: T[]): T[]
 
 // Amount of bits inside bigint
 function bitLen(n: bigint) {
+  n = BigInt(n)
   let len;
-  for (len = 0; n > 0n; n >>= 1n, len += 1);
+  for (len = 0; n > 0n; n >>= BigInt(1), len += 1);
   return len;
 }
 
@@ -1007,7 +1005,7 @@ function sgn0(x: Fp2) {
   return BigInt(sign_0 || (zero_0 && sign_1));
 }
 
-const P_MINUS_9_DIV_16 = (CURVE.P ** 2n - 9n) / 16n;
+const P_MINUS_9_DIV_16 = 0x2a437a4b8c35fc74bd278eaa22f25e9e2dc90e50e7046b466e59e49349e8bd050a62cfd16ddca6ef53149330978ef011d68619c86185c7b292e85a87091a04966bf91ed3e71b743162c338362113cfd7ced6b1d76382eab26aa00001c718e3;
 // Does not return a square root.
 // Returns uv⁷ * (uv¹⁵)^((p² - 9) / 16) * root of unity
 // if valid square root is found
